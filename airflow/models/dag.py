@@ -764,7 +764,7 @@ class DAG(LoggingMixin):
     def default_view(self) -> str:
         """
         The default DAG View
-        coule be one of tree, graph, duration, gantt, landing_times
+        could be one of tree, graph, duration, gantt, landing_times
         """
         return self._default_view
 
@@ -1193,7 +1193,8 @@ class DAG(LoggingMixin):
             for dag in self.subdags + [self]:  # pylint: disable=redefined-outer-name
                 conditions.append(
                     # pylint: disable=no-member
-                    (TaskInstance.dag_id == dag.dag_id) & TaskInstance.task_id.in_(dag.task_ids)
+                    (TaskInstance.dag_id == dag.dag_id)
+                    & TaskInstance.task_id.in_(dag.task_ids)
                     # pylint: enable=no-member
                 )
             tis = tis.filter(or_(*conditions))
